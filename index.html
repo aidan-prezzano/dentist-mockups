@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preferred Dental Hero Concept</title>
+  <style>
+    :root {
+      --navy: #0f2740;
+      --navy-2: #163654;
+      --blue: #2d74b9;
+      --blue-soft: #e9f3fb;
+      --ink: #14314b;
+      --muted: #60778b;
+      --line: rgba(20, 49, 75, 0.12);
+      --panel: rgba(255,255,255,0.78);
+      --panel-strong: rgba(255,255,255,0.92);
+      --shadow: 0 30px 80px rgba(16, 39, 64, 0.18);
+      --max: 1220px;
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(45,116,185,0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(22,54,84,0.14), transparent 22%),
+        linear-gradient(180deg, #f7fbff 0%, #e8f1f8 100%);
+    }
+
+    .frame {
+      width: min(calc(100% - 12px), 1360px);
+      margin: 6px auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.66));
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: 0 24px 60px rgba(16, 39, 64, 0.10);
+      border-radius: 22px;
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, var(--navy), var(--navy-2));
+      color: rgba(255,255,255,0.92);
+      font-size: 14px;
+      letter-spacing: 0.01em;
+    }
+
+    .topbar-inner,
+    .nav,
+    .hero {
+      width: min(calc(100% - 44px), 1240px);
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 0;
+      flex-wrap: wrap;
+    }
+
+    .nav-wrap {
+      background: rgba(255,255,255,0.72);
+      border-bottom: 1px solid rgba(20,49,75,0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--navy);
+    }
+
+    .brand span { color: var(--blue); }
+
+    .links {
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #3c89d6, #2267a9);
+      color: white;
+      box-shadow: 0 18px 30px rgba(34,103,169,0.22);
+    }
+
+    .btn.ghost {
+      background: rgba(255,255,255,0.76);
+      color: var(--navy);
+      border-color: rgba(20,49,75,0.12);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 34px;
+      align-items: center;
+      padding: 56px 0 60px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(45,116,185,0.1);
+      color: #17548d;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 7vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      color: #10293f;
+      max-width: 8.7ch;
+    }
+
+    .lede {
+      margin: 22px 0 28px;
+      max-width: 58ch;
+      font-size: 19px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(20,49,75,0.08);
+      color: var(--ink);
+      font-size: 14px;
+      box-shadow: 0 10px 22px rgba(16,39,64,0.06);
+    }
+
+    .visual {
+      position: relative;
+      min-height: 640px;
+      display: grid;
+      align-items: stretch;
+    }
+
+    .photo {
+      position: absolute;
+      inset: 0;
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(15,39,64,0.14), rgba(15,39,64,0.26)),
+        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1400&q=80') center/cover;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .glass-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      background: rgba(255,255,255,0.84);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(16,39,64,0.14);
+      padding: 24px;
+    }
+
+    .glass-card h3 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      color: #10293f;
+    }
+
+    .glass-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(20,49,75,0.08);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 5px;
+      color: #10293f;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .service-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .service-card {
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: 0 18px 42px rgba(16,39,64,0.12);
+      background: #dfeaf3;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(16,39,64,0.08), rgba(16,39,64,0.58));
+    }
+
+    .service-card > div {
+      position: absolute;
+      inset: auto 20px 18px 20px;
+      color: white;
+      z-index: 1;
+    }
+
+    .service-card strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .service-card span {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .section {
+      width: min(calc(100% - 44px), 1240px);
+      margin: 0 auto 28px;
+    }
+
+    .quick-actions {
+      width: min(calc(100% - 44px), 1240px);
+      margin: -4px auto 26px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .quick-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(20,49,75,0.08);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 16px 36px rgba(16,39,64,0.08);
+    }
+
+    .quick-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+      color: #10293f;
+    }
+
+    .quick-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(20,49,75,0.08);
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(16,39,64,0.10);
+      padding: 28px;
+      backdrop-filter: blur(12px);
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: #10293f;
+    }
+
+    .panel p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-top: 1px solid rgba(20,49,75,0.08);
+    }
+
+    .check:first-child { border-top: 0; padding-top: 0; }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(45,116,185,0.12);
+      color: #18558d;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .mini-quote {
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #13314d, #214a70);
+      color: white;
+      box-shadow: 0 20px 45px rgba(16,39,64,0.18);
+    }
+
+    .mini-quote p {
+      color: rgba(255,255,255,0.84);
+      margin: 10px 0 0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .note {
+      width: min(calc(100% - 56px), 1140px);
+      margin: 0 auto 30px;
+      padding: 22px 24px 28px;
+      color: rgba(20,49,75,0.82);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .note strong { color: #10293f; }
+
+    @media (max-width: 1040px) {
+      .support-grid { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; }
+      h1 { max-width: 100%; }
+      .visual { min-height: 560px; }
+      .links { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      .frame { width: min(calc(100% - 8px), 1360px); margin: 4px auto; border-radius: 16px; }
+      .topbar-inner, .nav, .hero, .note, .quick-actions { width: min(calc(100% - 22px), 1240px); }
+      .actions { width: 100%; justify-content: flex-start; }
+      .stats, .service-strip, .quick-actions { grid-template-columns: 1fr; }
+      .glass-card { left: 14px; right: 14px; bottom: 14px; }
+      .visual { min-height: 500px; }
+      h1 { font-size: clamp(40px, 13vw, 62px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div>Welcoming new patients in Colorado Springs</div>
+        <div>Call (719) 445-0827 • Friendly family care • Mon to Fri</div>
+      </div>
+    </div>
+
+    <div class="nav-wrap">
+      <div class="nav">
+        <div class="brand">Preferred<br /><span>Dental</span></div>
+        <div class="links">
+          <a href="#">Services</a>
+          <a href="#">Meet Dr. Bannon</a>
+          <a href="#">Reviews</a>
+          <a href="#">New Patients</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="actions">
+          <a class="btn ghost" href="#">Call Now</a>
+          <a class="btn primary" href="#">Request Appointment</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Welcoming, affordable dental care in Colorado Springs</div>
+        <h1>Superior dental care in a welcoming, comfortable environment.</h1>
+        <p class="lede">
+          Preferred Dental helps Colorado Springs patients feel cared for from the very first visit. With compassionate treatment, clear communication, and a wide range of services, the experience feels more personal and easier to trust.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#">Schedule an Appointment</a>
+          <a class="btn ghost" href="#services">Explore Our Services</a>
+        </div>
+        <div class="trust-row">
+          <div class="pill">⭐ 5.0 local reputation</div>
+          <div class="pill">Quality affordable dental care</div>
+          <div class="pill">Trusted relationships with patients</div>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="photo"></div>
+        <div class="glass-card">
+          <h3>What new patients should feel right away</h3>
+          <p>
+            A calmer first impression, a visible appointment path, and a clearer sense of the comfort-focused care the practice already provides.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <strong>Easy to book</strong>
+              <span>Scheduling is visible immediately, with a stronger first-screen call to action.</span>
+            </div>
+            <div class="stat">
+              <strong>More personal</strong>
+              <span>The warmth of the practice comes through faster and more clearly.</span>
+            </div>
+            <div class="stat">
+              <strong>Better organized</strong>
+              <span>Services, trust, and affordability are easier to understand at a glance.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-actions">
+      <div class="quick-card">
+        <strong>Request an Appointment</strong>
+        <p>Make the next step obvious for first-time visitors instead of burying the action lower on the page.</p>
+        <a class="btn primary" href="#">Schedule Now</a>
+      </div>
+      <div class="quick-card">
+        <strong>Insurance & Payment Options</strong>
+        <p>Surface the affordability story earlier so cost never feels like an unspoken barrier.</p>
+        <a class="btn ghost" href="#">See Insurance</a>
+      </div>
+      <div class="quick-card">
+        <strong>The Preferred Plan</strong>
+        <p>Highlight the membership option more clearly so uninsured patients immediately see a path forward.</p>
+        <a class="btn ghost" href="#">Learn More</a>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="service-strip">
+        <div class="service-card" style="background: url('https://www.preferreddentalcs.com/wp-content/uploads/2021/08/shutterstock_364127240_web.jpg') center/cover;">
+          <div>
+            <strong>Comprehensive services</strong>
+            <span>From cleanings and exams to restorative care, the site should quickly show the breadth of treatment available.</span>
+          </div>
+        </div>
+        <div class="service-card" style="background: url('https://www.preferreddentalcs.com/wp-content/uploads/2021/08/biopic.jpg') center/cover; background-position: center top;">
+          <div>
+            <strong>Doctor-led trust</strong>
+            <span>Dr. Bannon’s presence should be visible earlier so the site feels more personal and reassuring.</span>
+          </div>
+        </div>
+        <div class="service-card" style="background: url('https://www.preferreddentalcs.com/wp-content/uploads/2021/09/shutterstock_656279509_web.jpg') center/cover;">
+          <div>
+            <strong>Affordable care</strong>
+            <span>Insurance support and The Preferred Plan are strong trust builders and should be surfaced more clearly.</span>
+          </div>
+        </div>
+      </div>
+      <div class="support-grid">
+        <div class="panel">
+          <h2>Why patients choose Preferred Dental</h2>
+          <p>
+            Preferred Dental already emphasizes comfort, trust, and affordable care. This concept keeps those same strengths, but presents them in a cleaner way that helps visitors understand the value faster.
+          </p>
+          <div class="checklist">
+            <div class="check">
+              <div class="icon">✓</div>
+              <div><strong>Comfort-focused care</strong><br />A calm, supportive experience that helps patients feel at ease from the moment they walk in.</div>
+            </div>
+            <div class="check">
+              <div class="icon">✓</div>
+              <div><strong>Comprehensive dental services</strong><br />From cleanings and exams to whitening, restorative work, and root canal therapy, patients can find the care they need in one trusted practice.</div>
+            </div>
+            <div class="check">
+              <div class="icon">✓</div>
+              <div><strong>Affordable, relationship-based care</strong><br />A Colorado Springs practice built around long-term relationships, clear communication, and dependable follow-through.</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="mini-quote">
+            <strong style="font-size:22px; letter-spacing:-0.02em;">Dr. Nathanael Bannon</strong>
+            <p>
+              “Dr. Bannon’s commitment to excellence and patient-first philosophy is the foundation of Preferred Dental. He takes pride in delivering excellent care and building trusting relationships with every patient.”
+            </p>
+          </div>
+          <div style="height:18px"></div>
+          <h2>Affordable care, made easier to understand</h2>
+          <p>
+            The current site already highlights insurance help and The Preferred Plan. This version keeps those same trust builders, but makes them easier to notice and connect to the decision to book.
+          </p>
+          <p>
+            That gives first-time visitors a faster sense of who you are, what kind of experience to expect, and how affordability and care fit together.
+          </p>
+          <a class="btn primary" href="#" style="margin-top:8px;">Explore The Preferred Plan</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>Concept direction:</strong> a more premium, conversion-aware version of the current Preferred Dental homepage, keeping the practice’s real trust themes, affordability message, services, and doctor identity while presenting them more clearly.
+    </div>
+  </div>
+</body>
+</html>
